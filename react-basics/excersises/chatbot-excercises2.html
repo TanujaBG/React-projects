@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Commerce</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function ProductDetails(props)
+      {
+        const pp = <p>Price: ${props.price}</p>;
+        const price = props.discountPrice ? <del>{pp}</del> : pp;
+
+        return(
+          <div>
+            <img src={props.imageUrl} width="150"/>
+            <p>{props.productName}</p>
+            {price}
+            <p>{props.discountPrice && `Discount Price: ${props.discountPrice}`}</p>
+            <button>Add to cart</button>  
+          </div>
+        );
+      }
+
+      function App()
+      {
+        return(
+          <div>
+            <ProductDetails productName="Cotton Socks" price="$10.90" discountPrice="$5.45" imageUrl="..\images\cotton-socks.png" />
+            <ProductDetails productName="Tennis balls" price="$6.00" imageUrl="..\images\tennis-balls.png" />
+            <ProductDetails productName="Plain T-Shirt" price="$7.99" imageUrl="..\images\plain-t-shirt.png" />
+          </div>
+        );
+      }
+
+
+        
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
