@@ -3,6 +3,14 @@ import { Header } from "../components/Header.jsx";
 import { products } from "../../starting-code/data/products";
 
 export function HomePage() {
+
+  // get data from backend
+  fetch("http://localhost:3000/api/products").then((response) => {
+    response.json().then((data) => {
+      console.log(data);
+    });
+  });
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="/images/home-favicon.png" />
