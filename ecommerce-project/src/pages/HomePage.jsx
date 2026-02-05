@@ -12,7 +12,7 @@ export function HomePage({ cart }) {
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
     });
-    
+
   }, []);
 
   return (
@@ -45,7 +45,7 @@ export function HomePage({ cart }) {
                 </div>
 
                 <div className="product-price">
-                  formatMoney(product.priceCents)
+                  {formatMoney(product.priceCents)}
                 </div>
 
                 <div className="product-quantity-container">
