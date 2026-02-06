@@ -2,7 +2,7 @@ import "./TrackingPage.css";
 import { Header } from "../components/Header.jsx";
 import { Link } from "react-router";
 
-export function TrackingPage() {
+export function TrackingPage({cart}) {
   return (
     <>
       <link
@@ -11,7 +11,7 @@ export function TrackingPage() {
         href="/images/tracking-favicon.png"
       />
       <title>Tracking</title>
-      <Header />
+      <Header cart={cart}/>
 
       <div className="tracking-page">
         <div className="order-tracking">
