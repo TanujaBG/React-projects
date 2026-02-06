@@ -9,9 +9,22 @@ export function HomePage({ cart }) {
 
   useEffect(() => {
     // get data from backend
+
+    /*
+    // using Promise
+
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
+    }); */
+
+    //using aync/await
+    const getHomeData = async () => {
+      // get data from backend
+      const response = await axios.get("/api/products");
+      setProducts(response.data);
+    };
+
+    getHomeData();
   }, []);
 
   return (
