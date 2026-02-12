@@ -1,9 +1,40 @@
 import axios from "axios";
+import { useState } from "react";
 
 export function CartItemDetails({ cartItem, loadCart }) {
+  const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
+  };
+
+  const updateQuantity = async () => {
+    if (isUpdatingQuantity) {
+      await axios.put(`/api/cart-items/${cartItem.productId}`, {
+        quantity: quantity,
+      });
+      await loadCart();
+      setIsUpdatingQuantity(false);
+    } else {
+      setIsUpdatingQuantity(true);
+    }
+  };
+
+  const updateQuantityInput = (event) => {
+    const value = Number(event.target.value);
+    setQuantity(value);
+  };
+
+  const quantityKeyPress = async (event) => {
+    if (event.key === "Enter") {
+      await updateQuantity();
+    } else if (event.key === "Escape") {
+      setQuantity(cartItem.quantity);
+      setIsUpdatingQuantity(false);
+    }
+    
   };
 
   return (
@@ -18,9 +49,24 @@ export function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-quantity">
           <span>
             Quantity:{" "}
-            <span className="quantity-label">{cartItem.quantity}</span>
+            {isUpdatingQuantity ? (
+              <input
+                type="text"
+                className="quantity-textbox"
+                value={quantity}
+                onChange={updateQuantityInput}
+                onKeyDown={quantityKeyPress}
+              />
+            ) : (
+              <span className="quantity-label">{quantity}</span>
+            )}
           </span>
-          <span className="update-quantity-link link-primary">Update</span>
+          <span
+            className="update-quantity-link link-primary"
+            onClick={updateQuantity}
+          >
+            Update
+          </span>
           <span
             className="delete-quantity-link link-primary"
             onClick={deleteCartItem}

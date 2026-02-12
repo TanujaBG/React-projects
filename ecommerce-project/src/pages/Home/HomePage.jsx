@@ -6,6 +6,7 @@ import { ProductsGrid } from "./ProductsGrid";
 
 export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
+  window.axios = axios; // in console type axios.post('/api/reset') to reset the backend data
 
   useEffect(() => {
     // get data from backend
@@ -34,7 +35,7 @@ export function HomePage({ cart, loadCart }) {
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductsGrid products={products} loadCart={loadCart}/>
+        <ProductsGrid products={products} loadCart={loadCart} />
       </div>
     </>
   );

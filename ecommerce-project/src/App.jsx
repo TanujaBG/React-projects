@@ -4,7 +4,7 @@ import { HomePage } from "./pages/Home/HomePage";
 import "./App.css";
 import { Routes, Route } from "react-router";
 import { CheckoutPage } from "./pages/Checkout/CheckoutPage";
-import { OrdersPage } from "./pages/Orders/OrdersPage";
+import { OrdersPage } from "./pages/orders/OrdersPage";
 import { TrackingPage } from "./pages/TrackingPage";
 import { PageNotFound } from "./pages/PageNotFound";
 import axios from "axios";
