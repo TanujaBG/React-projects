@@ -3,10 +3,14 @@ import "./HomePage.css";
 import { Header } from "../../components/Header.jsx";
 import { useEffect, useState } from "react";
 import { ProductsGrid } from "./ProductsGrid";
+import { useSearchParams } from "react-router";
 
 export function HomePage({ cart, loadCart }) {
   const [products, setProducts] = useState([]);
   window.axios = axios; // in console type axios.post('/api/reset') to reset the backend data
+
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
 
   useEffect(() => {
     // get data from backend
@@ -20,13 +24,15 @@ export function HomePage({ cart, loadCart }) {
 
     //using aync/await
     const getHomeData = async () => {
+      console.log(search);
+      const url = search ? `/api/products?search=${search}` : "/api/products";
       // get data from backend
-      const response = await axios.get("/api/products");
+      const response = await axios.get(url);
       setProducts(response.data);
     };
 
     getHomeData();
-  }, []);
+  }, [search]);
 
   return (
     <>
