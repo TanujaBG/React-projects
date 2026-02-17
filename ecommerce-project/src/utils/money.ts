@@ -1,4 +1,4 @@
-export function formatMoney(cents)
+export function formatMoney(cents: number)
 {
     if (cents < 0)
     {

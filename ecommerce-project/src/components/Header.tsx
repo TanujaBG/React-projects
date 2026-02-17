@@ -2,7 +2,15 @@ import { useState } from "react";
 import "./Header.css";
 import { NavLink, useNavigate, useSearchParams } from "react-router";
 
-export function Header({ cart }) {
+type HeaderProps = {
+  cart: {
+    productId: string,
+    quantity: number,
+    deliveryOptionId: string
+  }[];
+};
+
+export function Header({ cart }: HeaderProps) {
   const [searchParams] = useSearchParams();
   const initalSearch = searchParams.get("search") || "";
 
@@ -15,7 +23,7 @@ export function Header({ cart }) {
 
   const [search, setSearch] = useState(initalSearch);
 
-  const updateSearchText = (event) => {
+  const updateSearchText = (event : React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
