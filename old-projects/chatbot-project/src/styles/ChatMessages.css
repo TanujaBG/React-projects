@@ -1,0 +1,18 @@
+
+.chat-messages-container {
+  flex-grow: 1;
+  margin-top: 20px;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
+.welcome-message {
+  text-align: center;
+  color: gray;
+  font-size: 20px;
+}
+
+.loading-spinner {
+  height: 40px;
+  margin: -15px;
+}
